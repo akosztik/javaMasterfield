@@ -1,0 +1,9 @@
+package objektumorientaltsag;
+
+public class Alkalmazott {
+	String nev;
+	int kor;
+	int fizetes;
+	
+	
+}

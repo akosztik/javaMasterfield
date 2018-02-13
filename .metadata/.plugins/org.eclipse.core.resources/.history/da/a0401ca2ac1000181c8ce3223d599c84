@@ -1,0 +1,5 @@
+package feladatoop7;
+
+public interface Csomag {
+
+}
