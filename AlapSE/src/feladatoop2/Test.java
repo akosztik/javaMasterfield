@@ -1,0 +1,15 @@
+package feladatoop2;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] temp= {1,2,3,4,5};
+		KonyvesPolc kp=new KonyvesPolc(5,temp);
+		System.out.println(kp.toString());
+		kp.add(3,4);
+		int osszeg=kp.countKonyvek();
+		System.out.println(osszeg);
+	}
+
+}
