@@ -1,0 +1,12 @@
+package feladatoop2;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] temp= {1,2,3,4,5};
+		KonyvesPolc kp=new KonyvesPloc(5,temp);
+		
+	}
+
+}

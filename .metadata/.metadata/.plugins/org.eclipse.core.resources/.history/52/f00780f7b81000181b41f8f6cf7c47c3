@@ -1,0 +1,18 @@
+package kivetelkezeles;
+
+public class AlapEset {
+
+	public static void main(String[] args) {
+		int szam=0;
+		try {
+			System.out.println(5/szam);
+		}catch(Exception e){
+			System.out.println("hibatörtént");
+			System.out.println(e.getMessage());
+			System.out.println(e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		System.out.println("program vege");
+	}
+
+}

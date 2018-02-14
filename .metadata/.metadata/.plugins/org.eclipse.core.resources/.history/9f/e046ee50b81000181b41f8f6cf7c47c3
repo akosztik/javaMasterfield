@@ -1,0 +1,10 @@
+package kivetelkezeles;
+
+public class AlapEset {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

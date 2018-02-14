@@ -1,0 +1,11 @@
+package hu.masterfield.valtozok;
+
+public class Valtozok {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int num1=34;
+		System.out.println(num1);
+	}
+
+}

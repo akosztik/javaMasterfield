@@ -1,0 +1,27 @@
+package kivetelkezeles;
+
+public class AlapEset {
+
+	public static void main(String[] args) {
+		int szam=0;
+		try {
+			int[] tomb = {1,2};
+			System.out.println(tomb[2]);
+			System.out.println(5/szam);
+			
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("tomb tulindexeles");
+		}catch(ArithmeticException e) {
+			System.out.println("nullával osztás");
+		}catch(Exception e){
+		
+			//általanos ág
+			System.out.println("hibatörtént");
+			System.out.println(e.getMessage());
+			System.out.println(e.getLocalizedMessage());
+			e.printStackTrace();// párhuzamosan fut stacktrace, a program fut tovább ezért nem pontosan tt jelenik meg a consolon ahol elõfordult
+		}
+
+		System.out.println("program vege");
+	}
+

@@ -1,0 +1,16 @@
+package awt;
+
+import java.awt.Frame;
+import java.awt.GraphicsConfiguration;
+import java.awt.HeadlessException;
+
+public class Ablak extends Frame{
+
+	
+	public Ablak() throws HeadlessException {
+		setVisible(true);
+		setSize(300,200);
+		// TODO Auto-generated constructor stub
+	}
+
+}

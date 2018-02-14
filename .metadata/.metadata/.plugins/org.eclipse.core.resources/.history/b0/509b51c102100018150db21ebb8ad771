@@ -1,0 +1,12 @@
+package objektumorientaltsag;
+
+public class Teszt {
+	public static void main(String[] args) {
+		Alkalmazott alk1=new Alkalmazott();
+		alk1.nev="Kosztik Anett";
+		Alkalmazott alk2= new Alkalmazott();
+		alk2.nev="Kardos Istvan";
+		System.out.println(alk1.nev);
+		System.out.println(alk2.nev);
+	}
+}
