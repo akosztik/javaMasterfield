@@ -85,9 +85,7 @@ public class Vezerek extends JFrame {
 		megoldas[megoldasMutatao]++;
 		if(megoldas[megoldasMutatao]>=MERET) {
 			megoldas[megoldasMutatao]=-1;
-			foglalasFelszab();
 			megoldasMutatao--;
-			
 		}else {
 			if(lerakhato() && forwardChecking()) {
 				
@@ -122,41 +120,10 @@ public class Vezerek extends JFrame {
 		if (!chckbxForwardcheking.isSelected()) {
 			return true;
 		}
-		boolean vanHely=false;
-		for (int i = 0; i < megoldasMutatao+1; i++) {
-			boolean mindTrue=true;
-			for (int j = 0; j < foglaltsag.length; j++) {
-				if(!foglaltsag[i][j]) {
-					mindTrue=false;
-				}
-			}
-			if (mindTrue) {
-				vanHely=false;
-			}
-		}
-		if (vanHely) {
-			foglalas(megoldasMutatao);
-		}
+		boolean mindTrue=false;
 	
 		
-		return vanHely;
-	}
-	private void foglalas(int megoldasMutatao2) {
-		for (int i = 0; i < foglaltsag.length; i++) {
-			for (int j = megoldasMutatao2+1; j < foglaltsag.length; j++) {
-				if(utesben(megoldasMutatao2,megoldas[megoldasMutatao2],i,j)) {
-					foglaltsag[i][j]=true;
-				}
-			}
-		}
-		
-	}
-	private void foglalasFelszab() {
-		foglaltsag=new boolean[MERET][MERET];
-		for (int i = 0; i <= megoldasMutatao-1; i++) {
-			foglalas(i);
-			
-		}
+		return mindTrue;
 	}
 	private void eredmenyFileba() {
 		try {
