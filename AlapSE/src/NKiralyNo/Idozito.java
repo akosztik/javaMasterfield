@@ -19,12 +19,12 @@ public class Idozito extends Thread {
 			
 			vezerek.backTrack();
 			
-			try {
-				sleep(100);
+			/*try {
+				sleep(20);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 		}
 	}
 	

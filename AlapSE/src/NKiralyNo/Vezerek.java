@@ -10,12 +10,21 @@ import javax.swing.border.LineBorder;
 
 import java.awt.FlowLayout;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JCheckBox;
 
 public class Vezerek extends JFrame {
 
@@ -23,15 +32,42 @@ public class Vezerek extends JFrame {
 	private JPanel table;
 	private JTable table_1;
 	
-	private final int MERET=20;
+	private int MERET;
 	private JPanel[][] mezok;
 	private int[] megoldas;
 	private Idozito idozito;
 	private int megoldasMutatao=0;
+	private JSpinner spinner;
+	private int megoldasSzamlalo=0;
+	private long start;
+	private JCheckBox chckbxForwardcheking;
+	private boolean[][] foglaltsag;
 	
+	private void init() {
+		
+		tablaTakarit();
+		MERET=((Integer)spinner.getValue()).intValue();
+		megoldas=new int[MERET];
+		foglaltsag = new boolean[MERET][MERET];
+		
+		for (int i = 0; i < megoldas.length; i++) {
+			megoldas[i]=-1;
+		}
+		tablaGeneral();
+		megoldasMutatao=0;
+		megoldasSzamlalo=0;
+	}
+	private void tablaTakarit() {
+		Component[] panelek=table.getComponents();
+		for (int i = 0; i < panelek.length; i++) {
+			panelek[i]=null;
+		}
+		table.repaint();
+		
+	}
 	private boolean lerakhato() {
 		boolean lerakhato=true;
-		for (int i = 0; i < megoldasMutatao-1; i++) {
+		for (int i = 0; i <= megoldasMutatao-1; i++) {
 			if (utesben(i,megoldas[i],megoldasMutatao,megoldas[megoldasMutatao])) {
 				lerakhato=false;
 			}
@@ -51,31 +87,65 @@ public class Vezerek extends JFrame {
 			megoldas[megoldasMutatao]=-1;
 			megoldasMutatao--;
 		}else {
-			if(lerakhato()) {
+			if(lerakhato() && forwardChecking()) {
+				
 				megoldasMutatao++;
 			}
 		}
 		if(megoldasMutatao==MERET) {
-			System.out.println("Megoldas");
-			idozito.setFuthat(false);
+			megoldasSzamlalo++;
+			System.out.println("Megoldasszam: "+megoldasSzamlalo);
+			Object[] ujSor=new Object[2];
+			ujSor[0]=megoldasSzamlalo;
+			ujSor[1]="";
+			for (int i = 0; i < megoldas.length; i++) {
+				ujSor[1]+=megoldas[i]+",";
+			}
+			((DefaultTableModel)table_1.getModel()).addRow(ujSor);
+			//idozito.setFuthat(false);
+			megoldasMutatao--;
 		}
 		if(megoldasMutatao==-1) {
-			System.out.println("Nincs Megoldas");
+			if(megoldasMutatao==0) {
+				System.out.println("Nincs Megoldas");
+			}
 			idozito.setFuthat(false);
+			long stop= Calendar.getInstance().getTimeInMillis();
+			System.out.println("Futasi ido: "+ (stop-start));
 		}
 		megjelenit();
 	}
 
+	private boolean forwardChecking() {
+		if (!chckbxForwardcheking.isSelected()) {
+			return true;
+		}
+		boolean mindTrue=false;
+	
+		
+		return mindTrue;
+	}
+	private void eredmenyFileba() {
+		try {
+			FileWriter fw= new FileWriter("eredmeny.txt");
+			PrintWriter pw =new PrintWriter(fw);
+			int sorok=table_1.getModel().getRowCount();
+			for (int i = 0; i < sorok; i++) {
+				pw.println(table_1.getModel().getValueAt(i,0)+" "+table_1.getModel().getValueAt(i, 1));
+			}
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	/**
 	 * Create the frame.
 	 */
 	public Vezerek() {
 		
-		megoldas=new int[MERET];
-		
-		for (int i = 0; i < megoldas.length; i++) {
-			megoldas[i]=-1;
-		}
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 727, 442);
@@ -89,8 +159,12 @@ public class Vezerek extends JFrame {
 		contentPane.add(table);
 		table.setLayout(null);
 		
-		tablaGeneral();
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(8, 2, 50, 1));
+		spinner.setBounds(420, 11, 78, 23);
+		contentPane.add(spinner);
 		
+		init();
 		
 		JButton btnNewButton = new JButton("kl\u00E9p\u00E9s");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -110,6 +184,11 @@ public class Vezerek extends JFrame {
 		contentPane.add(btnInditas);
 		
 		JButton btnMentes = new JButton("mentes");
+		btnMentes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eredmenyFileba();
+			}
+		});
 		btnMentes.setBounds(618, 359, 89, 23);
 		contentPane.add(btnMentes);
 		
@@ -126,15 +205,21 @@ public class Vezerek extends JFrame {
 				"ID", "tulajdonsagok"
 			}
 		));
+		
+		chckbxForwardcheking = new JCheckBox("forwardCheking");
+		chckbxForwardcheking.setBounds(416, 299, 97, 23);
+		contentPane.add(chckbxForwardcheking);
+		
 		table_1.getColumnModel().getColumn(0).setPreferredWidth(119);
 		table_1.getColumnModel().getColumn(1).setPreferredWidth(235);
 	}
 
 	protected void start() {
+		init();
 		idozito=new Idozito(this);
 		idozito.start();
-		
-	}
+		start=Calendar.getInstance().getTimeInMillis();
+}
 
 	private void tablaGeneral() {
 		mezok= new JPanel[MERET][MERET];
