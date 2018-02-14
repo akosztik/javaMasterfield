@@ -21,10 +21,7 @@ public class ReadDB {
 			Statement stm = con.createStatement();
 			ResultSet rs= stm.executeQuery("SELECT * FROM user ORDER BY email");
 			System.out.println(rs.getMetaData().toString());
-			System.out.println(rs.getMetaData().getColumnCount());
-			while(rs.next()) {
-				System.out.println(rs.getInt("id")+" "+rs.getString("email"));
-			}
+			
 			con.close();
 			
 		} catch (ClassNotFoundException e) {
