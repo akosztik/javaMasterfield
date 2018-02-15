@@ -1,0 +1,20 @@
+package prior;
+
+import javax.swing.JProgressBar;
+
+public class Changer extends Thread{
+	private JProgressBar progressBar;
+	private int diff;
+	public Changer(JProgressBar progressBar, int diff) {
+		this.progressBar = progressBar;
+		this.diff = diff;
+		start();
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		progressBar.setValue(progressBar.getValue()+diff);
+		
+	}
+	
+}

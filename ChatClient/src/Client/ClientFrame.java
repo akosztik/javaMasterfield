@@ -45,7 +45,7 @@ public class ClientFrame extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				netWrite(userName.getText()+": exits.");
+				netWrite("exits:"+userName.getText());
 				dispose();
 			}
 		});
@@ -141,10 +141,10 @@ public class ClientFrame extends JFrame {
 					dfm=new DefaultListModel();
 					listParticipant.setModel(dfm);
 				}
-				if(!dfm.contains(textParts[0]) && !dfm.contains(textParts[1])) {
+				if(!dfm.contains(textParts[0]) && !dfm.contains(textParts[0])) {
 					(dfm).addElement(textParts[0]);
 				}
-				if (textParts[1]==" exits.") {
+				if (textParts[1]=="exits") {
 					(dfm).removeElement(textParts[0]);
 				}
 				

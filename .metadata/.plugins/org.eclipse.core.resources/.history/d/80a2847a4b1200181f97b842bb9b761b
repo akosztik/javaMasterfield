@@ -1,0 +1,73 @@
+package prior;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JProgressBar;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+
+public class ThreadFrame extends JFrame {
+
+	private JPanel contentPane;
+	private Changer leftThread;
+	private Changer rightThread;
+	
+
+	/**
+	 * Create the frame.
+	 */
+	public ThreadFrame() {
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 647, 426);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setMaximum(1000000);
+		progressBar.setValue(500000);
+		progressBar.setBounds(10, 11, 611, 14);
+		contentPane.add(progressBar);
+		leftThread= new Changer(progressBar, -1);
+		rightThread= new Changer(progressBar, +1);
+		leftThread.setPriority(5);
+		rightThread.setPriority(5);
+		
+		JSlider slider = new JSlider();
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				leftThread.setPriority(slider.getValue());
+			}
+		});
+		slider.setMinimum(Thread.MIN_PRIORITY);
+		slider.setMaximum(Thread.MAX_PRIORITY);
+		slider.setValue(Thread.NORM_PRIORITY);
+		slider.setOrientation(SwingConstants.VERTICAL);
+		slider.setBounds(10, 52, 20, 222);
+		contentPane.add(slider);
+		
+		JSlider slider_1 = new JSlider();
+		slider_1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				rightThread.setPriority(slider_1.getValue());
+			}
+		});
+		slider_1.setMinimum(Thread.MIN_PRIORITY);
+		slider_1.setMaximum(Thread.MAX_PRIORITY);
+		slider_1.setValue(Thread.NORM_PRIORITY);
+		slider_1.setOrientation(SwingConstants.VERTICAL);
+		slider_1.setBounds(601, 52, 20, 222);
+		contentPane.add(slider_1);
+		
+		repaint();
+		
+	}
+}

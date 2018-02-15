@@ -1,0 +1,38 @@
+package Alap;
+
+import java.sql.*;
+
+public class ReadDB {
+
+	public static void main(String[] args) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/evojava", "root", "");
+			/*Statement stm=	con.createStatement();
+			String sql="INSERT INTO user (email,password,active) VALUES ('pipa@evo.hu','123','yes')";
+			stm.executeUpdate(sql);
+			sql="INSERT INTO user (email,password,active) VALUES (?,?,?)";
+			PreparedStatement pstm=con.prepareStatement(sql);
+			pstm.setString(1,"lola@eis.hu");
+			pstm.setString(2,"5555");
+			pstm.setString(3,"no");
+			pstm.executeUpdate();
+			*/
+			Statement stm = con.createStatement();
+			ResultSet rs= stm.executeQuery("SELECT * FROM user ORDER BY email");
+			System.out.println(rs.getMetaData().toString());
+			System.out.println(rs.getMetaData().getColumnCount());
+			
+			con.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+
+}

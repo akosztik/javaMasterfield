@@ -26,6 +26,7 @@ public class ServerThread extends Thread {
 			BufferedReader br= new BufferedReader(isr);
 			while(true) {
 				String text=br.readLine();
+				new Log(text);
 				if(text==null) {
 					throw new Exception("Kliens kilépett! ");
 				}
