@@ -12,11 +12,11 @@ public class ChatServer{
 			ServerSocket ss = new ServerSocket(1035);
 			while (true) {
 				Socket sock=ss.accept();
-				ServerThread st =new ServerThread(sock,threads);// címszerinti átadás, ezért látja mindenki ha belép egy új ember a chatszobába.
+				ServerThread st =new ServerThread(sock,threads);// cï¿½mszerinti ï¿½tadï¿½s, ezï¿½rt lï¿½tja mindenki ha belï¿½p egy ï¿½j ember a chatszobï¿½ba.
 				threads.add(st);
-				st.netWrite("Hello!");
+				//st.netWrite("Hello!");
 				
-				System.out.println("kapcsolat érkezett");
+				System.out.println("kapcsolat ï¿½rkezett");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
