@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -42,6 +43,7 @@ public class Vezerek extends JFrame {
 	private long start;
 	private JCheckBox chckbxForwardcheking;
 	private boolean[][] foglaltsag;
+	private JButton btnMutat;
 	
 	private void init() {
 		
@@ -243,6 +245,15 @@ public class Vezerek extends JFrame {
 		chckbxForwardcheking.setBounds(416, 299, 97, 23);
 		contentPane.add(chckbxForwardcheking);
 		
+		btnMutat = new JButton("mutat");
+		btnMutat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				backTrack();
+			}
+		});
+		btnMutat.setBounds(519, 299, 89, 23);
+		contentPane.add(btnMutat);
+		
 		table_1.getColumnModel().getColumn(0).setPreferredWidth(119);
 		table_1.getColumnModel().getColumn(1).setPreferredWidth(235);
 	}
@@ -261,6 +272,7 @@ public class Vezerek extends JFrame {
 				JPanel panel = new JPanel();
 				panel.setBorder(new LineBorder(new Color(0,0,0)));
 				panel.setBounds(i*(400/MERET), j*(400/MERET), 400/MERET, 400/MERET);
+				JLabel label=new JLabel("x");//folytatni illetve a megjelenítbe setvisible a foglaltsagon
 				table.add(panel);
 				mezok[i][j]=panel;
 			}

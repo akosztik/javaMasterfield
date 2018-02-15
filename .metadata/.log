@@ -4337,3 +4337,27 @@ java.lang.ArrayIndexOutOfBoundsException
 
 !ENTRY org.eclipse.jface.text 2 0 2018-02-15 15:41:07.343
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.core.net 1 0 2018-02-15 16:08:57.628
+!MESSAGE System property http.proxyHost is set to pxbud.evosoft.com but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2018-02-15 16:08:57.648
+!MESSAGE System property http.proxyPort is set to 8080 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2018-02-15 16:08:57.664
+!MESSAGE System property https.proxyHost is set to pxbud.evosoft.com but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2018-02-15 16:08:57.682
+!MESSAGE System property https.proxyPort is set to 8080 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2018-02-15 16:08:57.699
+!MESSAGE System property http.proxyHost is set to pxbud.evosoft.com but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2018-02-15 16:08:57.717
+!MESSAGE System property http.proxyPort is set to 8080 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2018-02-15 16:08:57.735
+!MESSAGE System property https.proxyHost is set to pxbud.evosoft.com but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2018-02-15 16:08:57.752
+!MESSAGE System property https.proxyPort is set to 8080 but should not be set.

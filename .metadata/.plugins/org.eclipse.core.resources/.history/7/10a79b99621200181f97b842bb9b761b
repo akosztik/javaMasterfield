@@ -1,0 +1,10 @@
+package mappa;
+
+public class MappaListazo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
